@@ -59,13 +59,24 @@ void load_words(set<string> &word_list, const string &file_name)
 {
     ifstream in(file_name);
     for (string s; in >> s;)
+    {
         word_list.insert(s);
+    }
     in.close();
 }
 
 void print_word_ladder(const vector<string> &ladder)
 {
-    for (const string &s : ladder)
-        cout << s << "->";
+    cout << ladder[0];
+    for (size_t i = 1; i < ladder.size(); ++i)
+        cout << "->" << ladder[i];
     cout << endl;
+}
+
+void verify_word_ladder()
+{
+    set<string> word_list;
+    load_words(word_list, "src/words.txt");
+    vector<string> ladder = generate_word_ladder("code", "data", word_list);
+    print_word_ladder(ladder);
 }
