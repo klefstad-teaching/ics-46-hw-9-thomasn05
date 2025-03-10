@@ -2,22 +2,41 @@
 
 bool edit_distance_within(const std::string &str1, const std::string &str2, int d)
 {
-    int size1 = str1.size();
-    int size2 = str2.size();
-    int diff = abs(size1 - size2);
+    int size1 = str1.size(), size2 = str2.size();
 
-    if (diff > d)
+    if (abs(size1 - size2) > d)
         return false;
 
-    int min_size = min(size1, size2);
-    int count = 0;
-    for (int i = 0; i < min_size; i++)
+    int count = 0, i = 0, j = 0;
+
+    while (i < size1 && j < size2)
     {
-        if (str1[i] != str2[i])
-            ++count;
+        if (str1[i] != str2[j])
+        {
+            if (++count > d)
+                return false;
+
+            if (size1 > size2)
+                ++i;
+            else if (size1 < size2)
+                ++j;
+            else
+            {
+                ++i;
+                ++j;
+            }
+        }
+        else
+        {
+            ++i;
+            ++j;
+        }
     }
 
-    return count + diff <= d;
+    if (i < size1 || j < size2)
+        ++count;
+
+    return count == d;
 }
 
 bool is_adjacent(const string &word1, const string &word2)
@@ -77,6 +96,6 @@ void verify_word_ladder()
 {
     set<string> word_list;
     load_words(word_list, "src/words.txt");
-    vector<string> ladder = generate_word_ladder("code", "data", word_list);
+    vector<string> ladder = generate_word_ladder("car", "cheat", word_list);
     print_word_ladder(ladder);
 }
