@@ -46,7 +46,7 @@ vector<int> extract_shortest_path(const vector<int> &, const vector<int> &previo
     {
         path.push_back(i);
     }
-    return path;
+    return path.reserve();
 }
 
 void print_path(const vector<int> &v, int total)
