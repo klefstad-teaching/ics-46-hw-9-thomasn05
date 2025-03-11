@@ -31,7 +31,7 @@ vector<int> dijkstra_shortest_path(const Graph &G, int source, vector<int> &prev
             {
                 distance[v] = distance[u] + weight;
                 previous[v] = u;
-                pq.push({distances[v], v});
+                pq.push({distance[v], v});
             }
         }
     }
