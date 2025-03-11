@@ -2,12 +2,12 @@
 
 bool edit_distance_within(const std::string &str1, const std::string &str2, int d)
 {
-    size_t size1 = str1.size(), size2 = str2.size();
+    int size1 = str1.size(), size2 = str2.size();
 
     if (abs(size1 - size2) > d)
         return false;
 
-    size_t count = 0, i = 0, j = 0;
+    int count = 0, i = 0, j = 0;
 
     while (i < size1 && j < size2)
     {
@@ -92,13 +92,9 @@ void print_word_ladder(const vector<string> &ladder)
     cout << endl;
 }
 
-#define my_assert(e)                                         \
-    {                                                        \
-        cout << #e << ((e) ? " passed" : " failed") << endl; \
-    }
+#define my_assert(e) {cout << #e << ((e) ? " passed": " failed") << endl;}
 
-void verify_word_ladder()
-{
+void verify_word_ladder() {
 
     set<string> word_list;
 
@@ -115,4 +111,5 @@ void verify_word_ladder()
     my_assert(generate_word_ladder("sleep", "awake", word_list).size() == 8);
 
     my_assert(generate_word_ladder("car", "cheat", word_list).size() == 4);
+
 }
