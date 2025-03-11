@@ -58,12 +58,7 @@ void print_path(const vector<int> &v, int total)
         cout << "No path found" << endl;
         return;
     }
-    cout << "Shortest path: ";
-    for (size_t i = 0; i < v.size(); ++i)
-    {
-        if (i > 0)
-            cout << " -> ";
-        cout << v[i];
-    }
-    cout << "\nTotal weight: " << total << endl;
+    for (size_t i = 0; i < v.size(); i++)
+        cout << v[i] << ' ';
+    cout << "\nTotal cost: " << total << endl;
 }
