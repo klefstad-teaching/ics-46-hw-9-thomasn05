@@ -12,14 +12,15 @@ vector<int> dijkstra_shortest_path(const Graph &G, int source, vector<int> &prev
     pq.push(Edge(source, source));
     distance[source] = 0;
 
-    while(!pq.empty())
+    while (!pq.empty())
     {
         Edge current = pq.top();
         pq.pop();
 
         int u = current.dst;
 
-        if (visited[u]) continue;
+        if (visited[u])
+            continue;
 
         visited[u] = 1;
 
@@ -34,9 +35,19 @@ vector<int> dijkstra_shortest_path(const Graph &G, int source, vector<int> &prev
                 previous[v] = u;
                 pq.push(Edge(u, v, distance[v]))
             }
-
         }
     }
 
     return distance;
 }
+
+vector<int> extract_shortest_path(const vector<int> &, const vector<int> &previous, int destination)
+{
+    vector<int> path;
+    for (size_t i = destination; i != -1; previous[i])
+    {
+        path.push_back(i);
+    }
+    return path;
+}
+
